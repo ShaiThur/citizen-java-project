@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: admin
+      changes:
+        - createTable:
+            tableName: citizens
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: first_name
+                  type: varchar(128)
+              - column:
+                  name: middle_name
+                  type: varchar(128)
+              - column:
+                  name: last_name
+                  type: varchar(128)
+              - column:
+                  name: birth_date
+                  type: date
+              - column:
+                  name: phone
+                  type: varchar(15)
+              - column:
+                  name: extra_phone
+                  type: varchar(15)
+              - column:
+                  name: dul_serie
+                  type: varchar(4)
+              - column:
+                  name: dul_number
+                  type: varchar(6)
