@@ -42,7 +42,7 @@ public class CitizenService {
     }
 
     @Transactional
-    public ResponseEntity<Long> createCitizen(CitizenDto citizenDto){
+    public ResponseEntity<Long> createCitizen(CitizenDto citizenDto) throws UniqueUserException {
         try{
             Citizen citizen = citizenMapper.ToEntity(citizenDto);
             Long citizenId = citizenRepository.save(citizen).getId();

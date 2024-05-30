@@ -1,6 +1,7 @@
 package com.example.citizencrudproject.controller;
 
 import com.example.citizencrudproject.dto.CitizenDto;
+import com.example.citizencrudproject.exception.UniqueUserException;
 import com.example.citizencrudproject.service.CitizenService;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -66,7 +67,7 @@ public class CitizenController {
 
             @ApiResponse(responseCode = "500", description = "Возврат ошибки в случае проблем на сервере") })
     @PostMapping
-    public ResponseEntity<Long> createCitizen(@Valid @RequestBody CitizenDto citizenDto) {
+    public ResponseEntity<Long> createCitizen(@Valid @RequestBody CitizenDto citizenDto) throws UniqueUserException {
         return citizenService.createCitizen(citizenDto);
     }
 
