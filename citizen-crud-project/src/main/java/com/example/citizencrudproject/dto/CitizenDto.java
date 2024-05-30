@@ -1,12 +1,12 @@
 package com.example.citizencrudproject.dto;
 
 import com.example.citizencrudproject.constant.ValidationConstants;
-import com.example.citizencrudproject.validation.MinAgeConstraint;
-import com.example.citizencrudproject.validation.ValidPassportValue;
-import com.example.citizencrudproject.validation.ValidPhonePattern;
+import com.example.citizencrudproject.validation.MinAge;
+import com.example.citizencrudproject.validation.ValidPattern;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+
 import java.time.LocalDate;
 
 @Data
@@ -23,20 +23,22 @@ public class CitizenDto {
     @NotNull(message = "поле не должно быть пустым")
     private String lastName;
 
-    @MinAgeConstraint(message = "дата со дня рождения должна быть не менее 18 лет и 1 день")
+    @MinAge(minAge = ValidationConstants.MIN_AGE, message = "возраст должен быть не менее 18 лет")
     private LocalDate birthDate;
 
-    @ValidPhonePattern(message = "номер указан неправильно (формат:+7(XXX)XXX-XX-XX)")
+    @ValidPattern(pattern = ValidationConstants.PHONE_PATTERN,
+            message = "номер указан неправильно (формат:+7(XXX)XXX-XX-XX)")
     private String phone;
 
-    @ValidPhonePattern(message = "номер указан неправильно (формат:+7(XXX)XXX-XX-XX)")
+    @ValidPattern(pattern = ValidationConstants.PHONE_PATTERN,
+            message = "номер указан неправильно (формат:+7(XXX)XXX-XX-XX)")
     private String extraPhone;
 
-    @ValidPassportValue(passportData = ValidationConstants.PassportData.DulSerie, message
+    @ValidPattern(pattern = ValidationConstants.DUL_SERIE_PATTERN, message
             = "серия паспорта должна иметь 4 цифры")
     private String dulSerie;
 
-    @ValidPassportValue(passportData = ValidationConstants.PassportData.DulNumber, message
-            = "номер паспорта должен иметь 6 цифр")
+    @ValidPattern(pattern = ValidationConstants.DUL_NUMBER_PATTERN, message
+            = "серия паспорта должна иметь 4 цифры")
     private String dulNumber;
 }
